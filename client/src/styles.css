@@ -2,5 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 body {
-    background: linear-gradient(45deg, #f1dce0 0%, hsl(167, 83%, 73%) 100%)
+    background: linear-gradient(45deg, #f1dce0 0%, hsl(167, 83%, 73%) 100%);
+    background-repeat: no-repeat;
+    background-size: 3100px 1100px;
 }
