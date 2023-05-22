@@ -1,0 +1,94 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentFriend.id">
+    <h4>Friend</h4>
+    <div>
+      <label><strong>Name:</strong></label> {{ currentFriend.title }}
+    </div>
+    <div>
+      <label><strong>Friend Description:</strong></label>
+      {{ currentFriend.description }}
+    </div>
+    <div>
+      <label><strong>Status:</strong></label>
+      {{ currentFriend.status ? "Friend" : "Not a Friend" }}
+    </div>
+
+    <a
+      class="badge badge-warning"
+      routerLink="/friends/{{ currentFriend.id }}"
+    >
+      Edit
+    </a>
+  </div>
+
+  <div *ngIf="!currentFriend">
+    <br />
+    <p>Please click on a Friend...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentFriend.id" class="edit-form">
+    <h4>Friend</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentFriend.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Friend Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentFriend.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentFriend.status ? "Friend" : "Not a Friend" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentFriend.status"
+      (click)="updateStatus(false)"
+    >
+      Un-Friend
+    </button>
+    <button
+      *ngIf="!currentFriend.status"
+      class="badge badge-primary mr-2"
+      (click)="updateStatus(true)"
+    >
+      Accept
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteFriend()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateFriend()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentFriend.id">
+    <br />
+    <p>Cannot access this Friend...</p>
+  </div>
+</ng-template>

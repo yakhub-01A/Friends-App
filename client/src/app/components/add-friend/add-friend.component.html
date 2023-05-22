@@ -1,0 +1,35 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="friend.title"
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Friend Description</label>
+        <input
+          class="form-control"
+          id="description"
+          required
+          [(ngModel)]="friend.description"
+          name="description"
+        />
+      </div>
+
+      <button (click)="saveFriend()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Friend was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newFriend()">Add</button>
+    </div>
+  </div>
+</div>
